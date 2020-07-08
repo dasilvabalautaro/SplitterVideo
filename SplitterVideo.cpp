@@ -12,10 +12,10 @@ void CreateDirectory() {
 	_mkdir((char*)&directory);
 }
 
-void WriteImage(cv::Mat frame) {
-	
+void WriteImage(cv::Mat frame) {	
 	std::string nameFile = "frame.jpg";
 	std::string fileTemp = directory + "/" + std::to_string(countFiles) + nameFile;
+
 	cv::imwrite(fileTemp, frame);
 	countFiles++;
 }
@@ -24,7 +24,9 @@ void RunVideo(std::string fileName) {
 	int fps_camera;
 	cv::Mat _frame;
     cv::VideoCapture capture;
+
     capture.open(fileName);
+
     if (!capture.isOpened()) {
         std::cout << "Unable to open video file: " << fileName << std::endl;
         return;
@@ -46,6 +48,7 @@ void RunVideo(std::string fileName) {
 			}
 		}
 	}
+
 	capture.release();
 }
 
@@ -58,6 +61,7 @@ int main(int argc, char** argv)
         printf(" Set file video, please \n ");
         return -1;
     }
+
 	CreateDirectory();
 	RunVideo(fileVideo);
 
